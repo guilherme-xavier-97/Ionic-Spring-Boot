@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { API_CONFIG } from 'src/config/APIConfig';
+import { CategoriaDTO } from 'src/models/CategoriaDTO';
 import { CategoriaService } from 'src/services/domain/CategoriaService';
 
 @Component({
@@ -8,12 +10,15 @@ import { CategoriaService } from 'src/services/domain/CategoriaService';
 })
 export class CategoriasPage implements OnInit {
 
+  bucketUrl: string = API_CONFIG.bucketBaseUrl;
+  items: CategoriaDTO[];
+
   constructor(public categoriaService: CategoriaService) { }
 
   ngOnInit() {
     this.categoriaService.findAll().subscribe(
     response => {
-      console.log(response);
+      this.items = response;
     },
 
     error => {
