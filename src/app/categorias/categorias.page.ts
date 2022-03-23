@@ -21,9 +21,8 @@ export class CategoriasPage implements OnInit {
       this.items = response;
     },
 
-    error => {
-      console.log(error);
-    });
+    //Aqui eu posso deixar vazio pq o tratamento de erro esta sendo feito em src/errors/interceptor.error
+    error => {});
 
   }
 
