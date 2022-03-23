@@ -1,19 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MenuController, NavController } from '@ionic/angular';
+import { MenuControllerI } from '@ionic/core';
 
 @Component({
   selector: 'app-folder',
   templateUrl: './folder.page.html',
   styleUrls: ['./folder.page.scss'],
 })
-export class FolderPage implements OnInit {
-  public folder: string;
+export class FolderPage {
 
-  constructor(private activatedRoute: ActivatedRoute) { }
 
-  ngOnInit() {
-    this.folder = this.activatedRoute.snapshot.paramMap.get('id');
+  constructor(private router: Router, public menu: MenuController) { }
+
+  ionViewWillEnter(){
+    this.menu.swipeGesture(false);
   }
+
+  ionViewDidLeave() {
+    this.menu.swipeGesture(true);
+  }
+  login() {
+    this.router.navigate(['/categorias']);
+    }
 
   }
 
