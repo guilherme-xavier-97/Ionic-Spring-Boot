@@ -1,6 +1,5 @@
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HTTP_INTERCEPTORS, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AnyRecord } from 'dns';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from'rxjs/operators';
 

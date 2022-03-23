@@ -5,11 +5,12 @@
   <form>
     <ion-item>
       <ion-label position="floating">Email</ion-label>
-      <ion-input type="email"></ion-input>
+      <ion-input [(ngModel)]="credenciais.email" name = "email" type="email"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Senha</ion-label>
-      <ion-input type="password"></ion-input>
+      <!--Esse formato doidao do ngModel é padrão do angular. PS: o nome do atributo tem q ser IGUAL na classe onde foi declarado!-->
+      <ion-input [(ngModel)]="credenciais.senha" name = "senha" type="password"></ion-input>
     </ion-item>
 
     <ion-button color="warning" expand="block" (click)="login()">Entrar</ion-button>

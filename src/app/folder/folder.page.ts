@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuController, NavController } from '@ionic/angular';
 import { MenuControllerI } from '@ionic/core';
+import { CredenciaisDTO } from 'src/models/CredenciaisDTO';
 
 @Component({
   selector: 'app-folder',
@@ -10,6 +11,11 @@ import { MenuControllerI } from '@ionic/core';
 })
 export class FolderPage {
 
+  credenciais: CredenciaisDTO = {
+    email: '',
+    senha: ''
+
+  };
 
   constructor(private router: Router, public menu: MenuController) { }
 
@@ -22,6 +28,7 @@ export class FolderPage {
   }
   login() {
     this.router.navigate(['/categorias']);
+    console.log(this.credenciais);
     }
 
   }
