@@ -10,10 +10,13 @@ import { CategoriaService } from 'src/services/domain/CategoriaService';
 import { interceptorErrorProvider } from 'src/error/interceptor.error';
 import { AuthService } from 'src/services/AuthService';
 import { StorageService } from 'src/services/StorageService';
+import { FolderPage } from './folder/folder.page';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [
+    AppComponent,
+  ],
+  entryComponents: [AppComponent],
   imports: [BrowserModule, HttpClientModule,  IonicModule.forRoot(), AppRoutingModule],
   providers: [{ provide: RouteReuseStrategy,
     useClass: IonicRouteStrategy,

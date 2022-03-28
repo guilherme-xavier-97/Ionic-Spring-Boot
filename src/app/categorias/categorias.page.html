@@ -1,16 +1,14 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Categorias</ion-title>
+  <ion-toolbar>
     <ion-menu-toggle>
       <ion-icon name="menu"></ion-icon>
     </ion-menu-toggle>
-  </ion-navbar>
+    <ion-label id="label_titulo">Categorias</ion-label>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-list-header> Lista de Categorias </ion-list-header>
-
     <ion-item *ngFor="let item of items">
       <ion-icon src='{{bucketUrl}}/cat{{item.id}}.svg'></ion-icon>
       <h3>{{ item.nome }}</h3>
@@ -18,3 +16,5 @@
   </ion-list>
 
 </ion-content>
+
+
