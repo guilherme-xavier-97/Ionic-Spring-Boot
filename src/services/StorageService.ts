@@ -9,9 +9,8 @@ export class StorageService {
       return null;
     }
 
-    else {
-      return JSON.parse(user); //A response vem como string,então converto pra JSON
-    }
+    return JSON.parse(user); //A response vem como string,então converto pra JSON
+
 
   }
 
@@ -20,9 +19,8 @@ export class StorageService {
       localStorage.removeItem(STORAGE_KEYS.localUser);
     }
 
-    else {
-      localStorage.setItem(STORAGE_KEYS.localUser, JSON.stringify(obj));//A response vem como JSON, então converto pra string
-    }
+    localStorage.setItem(STORAGE_KEYS.localUser, JSON.stringify(obj));//A response vem como JSON, então converto pra string
+
 
   }
 }
