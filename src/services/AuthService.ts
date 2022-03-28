@@ -2,10 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { API_CONFIG } from 'src/config/APIConfig';
 import { CredenciaisDTO } from 'src/models/CredenciaisDTO';
+import { LocalUser } from 'src/models/LocalUser';
+import { StorageService } from './StorageService';
 
 @Injectable()
 export class AuthService {
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, public storage: StorageService) {
 
   }
 
@@ -22,5 +24,15 @@ export class AuthService {
         responseType: 'text'
       }
     );
+  }
+
+  successfulLogin(token: string) {
+    const user: LocalUser = { token };
+    this.storage.setLocalUser(user);
+
+  }
+
+  lougout() {
+    this.storage.setLocalUser(null);
   }
 }
