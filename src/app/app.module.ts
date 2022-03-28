@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CategoriaService } from 'src/services/domain/CategoriaService';
 import { interceptorErrorProvider } from 'src/error/interceptor.error';
+import { AuthService } from 'src/services/AuthService';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +18,8 @@ import { interceptorErrorProvider } from 'src/error/interceptor.error';
     useClass: IonicRouteStrategy,
   },
   CategoriaService,
-  interceptorErrorProvider
+  interceptorErrorProvider,
+  AuthService
     ],
   bootstrap: [AppComponent],
 })

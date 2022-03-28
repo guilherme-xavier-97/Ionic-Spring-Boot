@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MenuController, NavController } from '@ionic/angular';
 import { MenuControllerI } from '@ionic/core';
 import { CredenciaisDTO } from 'src/models/CredenciaisDTO';
+import { AuthService } from 'src/services/AuthService';
 
 @Component({
   selector: 'app-folder',
@@ -17,7 +18,11 @@ export class FolderPage {
 
   };
 
-  constructor(private router: Router, public menu: MenuController) { }
+  constructor(
+    private router: Router,
+    public menu: MenuController,
+    public auth: AuthService
+    ) { }
 
   ionViewWillEnter(){
     this.menu.swipeGesture(false);
@@ -27,8 +32,13 @@ export class FolderPage {
     this.menu.swipeGesture(true);
   }
   login() {
-    this.router.navigate(['/categorias']);
-    console.log(this.credenciais);
+    this.auth.authenticate(this.credenciais).subscribe(response => {
+      console.log(response.headers.get('Authorization'));
+      this.router.navigate(['/categorias']);
+    },
+
+    error => {});
+
     }
 
   }

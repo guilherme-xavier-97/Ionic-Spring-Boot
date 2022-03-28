@@ -7,6 +7,7 @@ import { catchError } from'rxjs/operators';
 export class InterceptorError implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     console.log('Passou pelo interceptor');
+    //o método catch não fuciona mais nessa versão do ionic, precisa fazer o catch error dentro do pipe()
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         let errorObj = error;
