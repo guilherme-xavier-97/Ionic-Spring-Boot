@@ -12,12 +12,8 @@ export class ClienteService {
   }
 
   findByEmail(email: string): Observable<ClienteDTO> {
-    const token = this.storage.getLocalUser().token;
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    const authHeader = new HttpHeaders({Authorization: token});
     return this.http.get<ClienteDTO>(
-      `${API_CONFIG.baseUrl}/clientes/email?value=${email}`,
-      {headers: authHeader}
+      `${API_CONFIG.baseUrl}/clientes/email?value=${email}`
     );
   }
 

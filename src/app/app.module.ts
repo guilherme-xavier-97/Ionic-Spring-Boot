@@ -12,6 +12,7 @@ import { AuthService } from 'src/services/AuthService';
 import { StorageService } from 'src/services/StorageService';
 import { FolderPage } from './folder/folder.page';
 import { ClienteService } from 'src/services/domain/ClienteService';
+import { authMiddlewareProvider } from 'src/middlewares/authMiddleware';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ClienteService } from 'src/services/domain/ClienteService';
     useClass: IonicRouteStrategy,
   },
   CategoriaService,
+  authMiddlewareProvider,
   interceptorErrorProvider,
   AuthService,
   StorageService,
