@@ -11,6 +11,7 @@ import { interceptorErrorProvider } from 'src/error/interceptor.error';
 import { AuthService } from 'src/services/AuthService';
 import { StorageService } from 'src/services/StorageService';
 import { FolderPage } from './folder/folder.page';
+import { ClienteService } from 'src/services/domain/ClienteService';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FolderPage } from './folder/folder.page';
   CategoriaService,
   interceptorErrorProvider,
   AuthService,
-  StorageService
+  StorageService,
+  ClienteService
     ],
   bootstrap: [AppComponent],
 })
