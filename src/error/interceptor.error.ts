@@ -1,5 +1,6 @@
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HTTP_INTERCEPTORS, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from'rxjs/operators';
 import { StorageService } from 'src/services/StorageService';
@@ -7,10 +8,10 @@ import { StorageService } from 'src/services/StorageService';
 @Injectable()
 export class InterceptorError implements HttpInterceptor {
 
-  constructor(public storage: StorageService) {
+  constructor(public storage: StorageService, public alertController: AlertController) {
   }
+
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log('Passou pelo interceptor');
     //o método catch não fuciona mais nessa versão do ionic, precisa fazer o catch error dentro do pipe()
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
@@ -19,18 +20,31 @@ export class InterceptorError implements HttpInterceptor {
           errorObj = errorObj.error;
         }
 
-        console.log('Interceptador pegou o erro');
-        console.log(errorObj);
+        switch(error.status) {
+          case 401:
+          this.presentAlert();
+          break;
 
-        switch(errorObj.status) {
           case 403:
           this.handle403();
           break;
+
       }
         return throwError(errorObj);
 
       }) as any
     );
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Erro 401: Falha na autenticação ',
+      message: 'Usuário ou senha incorretos!',
+      backdropDismiss: false,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
   handle403() {

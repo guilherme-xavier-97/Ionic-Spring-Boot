@@ -28,6 +28,7 @@ export class ProfilePage implements OnInit {
         this.getImageIfExists();
       },
       error => {
+        //Se o token estiver inválido e der ero 403, eu redireciono prapágina inicial
         if (error.status === 403) {
           this.router.navigate(['/folder/Inbox']);
         }
