@@ -31,6 +31,16 @@ export class FolderPage {
   ionViewDidLeave() {
     this.menu.swipeGesture(true);
   }
+
+  ionViewDidEnter() {
+    this.auth.refreshToken()
+      .subscribe(response => {
+        this.auth.successfulLogin(response.headers.get('Authorization'));
+        this.router.navigate(['/categorias']);
+      },
+      error => {});
+  }
+
   login() {
     this.auth.authenticate(this.credenciais).subscribe(response => {
       this.auth.successfulLogin(response.headers.get('Authorization'));

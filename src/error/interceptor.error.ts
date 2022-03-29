@@ -22,12 +22,16 @@ export class InterceptorError implements HttpInterceptor {
 
         switch(error.status) {
           case 401:
-          this.presentAlert();
-          break;
+            this.handle401();
+            break;
 
           case 403:
-          this.handle403();
-          break;
+            this.handle403();
+            break;
+
+          default:
+            this.dafaultError(errorObj);
+            break;
 
       }
         return throwError(errorObj);
@@ -36,7 +40,7 @@ export class InterceptorError implements HttpInterceptor {
     );
   }
 
-  async presentAlert() {
+  async handle401() {
     const alert = await this.alertController.create({
       header: 'Erro 401: Falha na autenticação ',
       message: 'Usuário ou senha incorretos!',
@@ -47,8 +51,28 @@ export class InterceptorError implements HttpInterceptor {
     await alert.present();
   }
 
-  handle403() {
+  async handle403() {
     this.storage.setLocalUser(null);
+    const alert = await this.alertController.create({
+      header: 'Erro 403: Acesso negado ',
+      message: 'Acesso negado para esta aplicação!',
+      backdropDismiss: false,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  async dafaultError(errorObj) {
+    this.storage.setLocalUser(null);
+    const alert = await this.alertController.create({
+      header: 'Erro ' + errorObj.status + ': ' + errorObj.error,
+      message: errorObj.message,
+      backdropDismiss: false,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
 
