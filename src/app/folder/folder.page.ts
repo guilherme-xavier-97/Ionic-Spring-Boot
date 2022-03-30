@@ -4,6 +4,7 @@ import { MenuController, NavController } from '@ionic/angular';
 import { MenuControllerI } from '@ionic/core';
 import { CredenciaisDTO } from 'src/models/CredenciaisDTO';
 import { AuthService } from 'src/services/AuthService';
+import { StorageService } from 'src/services/StorageService';
 
 @Component({
   selector: 'app-folder',
@@ -20,36 +21,38 @@ export class FolderPage {
 
   constructor(
     private router: Router,
+    public nav: NavController,
     public menu: MenuController,
-    public auth: AuthService
+    public auth: AuthService,
+    public storage: StorageService
     ) { }
 
-  ionViewWillEnter(){
-    this.menu.swipeGesture(false);
-  }
-
-  ionViewDidLeave() {
-    this.menu.swipeGesture(true);
-  }
 
   ionViewDidEnter() {
-    this.auth.refreshToken()
+    if(this.storage.getLocalUser() != null){
+      this.auth.refreshToken()
       .subscribe(response => {
         this.auth.successfulLogin(response.headers.get('Authorization'));
-        this.router.navigate(['/categorias']);
+        this.router.navigateByUrl('categorias');
       },
       error => {});
+
+    }
+
   }
 
   login() {
     this.auth.authenticate(this.credenciais).subscribe(response => {
       this.auth.successfulLogin(response.headers.get('Authorization'));
-      this.router.navigate(['/categorias']);
+      this.router.navigateByUrl('categorias');
     },
 
     error => {});
 
     }
 
-  }
+    signup() {
+      this.router.navigateByUrl('signup');
+    }
 
+  }

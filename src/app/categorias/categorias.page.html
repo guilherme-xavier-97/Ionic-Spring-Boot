@@ -1,9 +1,11 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-menu-toggle>
-      <ion-icon name="menu"></ion-icon>
-    </ion-menu-toggle>
-    <ion-label id="label_titulo">Categorias</ion-label>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Categorias
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,5 +18,3 @@
   </ion-list>
 
 </ion-content>
-
-
