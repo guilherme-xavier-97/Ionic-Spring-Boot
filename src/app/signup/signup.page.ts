@@ -12,4 +12,8 @@ export class SignupPage implements OnInit {
   ngOnInit() {
   }
 
+  signupUser() {
+    console.log('enviou');
+  }
+
 }

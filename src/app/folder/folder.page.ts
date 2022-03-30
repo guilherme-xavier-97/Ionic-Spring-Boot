@@ -51,8 +51,4 @@ export class FolderPage {
 
     }
 
-    signup() {
-      this.router.navigateByUrl('signup');
-    }
-
   }

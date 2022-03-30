@@ -1,67 +1,108 @@
 <ion-header>
   <ion-toolbar>
-    <ion-icon name="arrow-back-outline"></ion-icon>
+    <ion-button slot="start" fill="clear" color="warning" [routerLink]="['']">
+      <ion-icon slot="icon-only" name="arrow-back-outline" ></ion-icon>
+
+    </ion-button>
     <ion-title>Cadastro</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="formGroup" (ngSubmit)="signupUser(); $event.preventDefault()">
+  <form (ngSubmit)="signupUser(); $event.preventDefault()">
     <ion-item lines="full">
       <ion-label position="floating">Nome</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input name="nome" type="text" required></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Email</ion-label>
-      <ion-input type="email" required></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">DOB</ion-label>
-      <ion-input type="text" required></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Mobile</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input name="email" type="email" required></ion-input>
     </ion-item>
     <!-- Radio buttons -->
-    <ion-radio-group lines="full">
+    <ion-radio-group lines="full" name="tipo">
       <ion-list-header>
-        <ion-label>Gender</ion-label>
+        <ion-label>Tipo do Cliente</ion-label>
       </ion-list-header>
       <ion-item>
-        <ion-label>Male</ion-label>
-        <ion-radio slot="start" value="male" checked></ion-radio>
+        <ion-label>Pessoa Física</ion-label>
+        <ion-radio slot="start" value="1" checked></ion-radio>
       </ion-item>
       <ion-item>
-        <ion-label>Female</ion-label>
-        <ion-radio slot="start" value="female"></ion-radio>
+        <ion-label>Pessoa Jurídica</ion-label>
+        <ion-radio slot="start" value="2"></ion-radio>
       </ion-item>
     </ion-radio-group>
-    <!-- Checkboxes -->
-    <ion-list lines="full">
-      <ion-list-header>
-        <ion-label>Subjects</ion-label>
-      </ion-list-header>
-      <ion-item>
-        <ion-label>English</ion-label>
-        <ion-checkbox></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <ion-label>Maths</ion-label>
-        <ion-checkbox></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <ion-label>Science</ion-label>
-        <ion-checkbox></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <ion-label>History</ion-label>
-        <ion-checkbox></ion-checkbox>
-      </ion-item>
-    </ion-list>
+
+    <ion-item lines="full">
+      <ion-label position="floating">CPF ou CNPJ</ion-label>
+      <ion-input name="cpfOuCnpj" type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Endereço</ion-label>
+      <ion-input name="logradouro" type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Número</ion-label>
+      <ion-input name="numero" type="number" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Complemento</ion-label>
+      <ion-input name="complemento" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Bairro</ion-label>
+      <ion-input name="bairro" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">CEP</ion-label>
+      <ion-input name="cep" type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Telefone 1</ion-label>
+      <ion-input name="telefone1" type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Telefone 2</ion-label>
+      <ion-input name="telefone2" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Telefone 3</ion-label>
+      <ion-input name="telefone3" type="text"></ion-input>
+    </ion-item>
+    <!-- Selects -->
+    <ion-item>
+      <ion-label>Estado</ion-label>
+      <ion-select name="estadoId" (ionChange)="updateCidades()">
+        <ion-select-option value="1">Minas Gerais</ion-select-option>
+        <ion-select-option value="2">São Paulo</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Cidade</ion-label>
+      <ion-select name="cidadeId">
+        <ion-select-option value="1">Uberlândia</ion-select-option>
+        <ion-select-option value="2">São Paulo</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Senha</ion-label>
+      <ion-input name="senha" type="password" required></ion-input>
+    </ion-item>
+
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="danger" expand="block">Submit</ion-button>
+        <ion-button type="submit" color="warning" expand="block"
+          >Criar conta</ion-button>
       </ion-col>
     </ion-row>
   </form>
