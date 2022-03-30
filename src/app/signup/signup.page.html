@@ -1,15 +1,17 @@
 <ion-header>
   <ion-toolbar>
     <ion-button slot="start" fill="clear" color="warning" [routerLink]="['']">
-      <ion-icon slot="icon-only" name="arrow-back-outline" ></ion-icon>
-
+      <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
     </ion-button>
     <ion-title>Cadastro</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="formGroup" (ngSubmit)="signupUser(); $event.preventDefault()">
+  <form
+    [formGroup]="formGroup"
+    (ngSubmit)="signupUser(); $event.preventDefault()"
+  >
     <ion-item lines="full">
       <ion-label position="floating">Nome</ion-label>
       <ion-input formControlName="nome" type="text"></ion-input>
@@ -81,16 +83,18 @@
     <ion-item>
       <ion-label>Estado</ion-label>
       <ion-select formControlName="estadoId" (ionChange)="updateCidades()">
-        <ion-select-option value="1">Minas Gerais</ion-select-option>
-        <ion-select-option value="2">São Paulo</ion-select-option>
+        <ion-select-option
+          *ngFor="let estado of estados"
+          [value]="estado.id"
+          >{{estado.nome}}</ion-select-option
+        >
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label>Cidade</ion-label>
       <ion-select formControlName="cidadeId">
-        <ion-select-option value="1">Uberlândia</ion-select-option>
-        <ion-select-option value="2">São Paulo</ion-select-option>
+        <ion-select-option *ngFor="let cidade of cidades" [value]="cidade.id" >{{cidade.nome}}</ion-select-option>
       </ion-select>
     </ion-item>
 
@@ -102,7 +106,8 @@
     <ion-row>
       <ion-col>
         <ion-button type="submit" color="warning" expand="block"
-          >Criar conta</ion-button>
+          >Criar conta</ion-button
+        >
       </ion-col>
     </ion-row>
   </form>

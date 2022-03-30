@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { SignupPageRoutingModule } from './signup-routing.module';
 
 import { SignupPage } from './signup.page';
+import { CidadeService } from 'src/services/domain/CidadeService';
+import { EstadoService } from 'src/services/domain/EstadoService';
 
 @NgModule({
   imports: [
@@ -16,6 +18,10 @@ import { SignupPage } from './signup.page';
     SignupPageRoutingModule,
     ReactiveFormsModule //Esse não estava na aula, mas como peguei um template de formulário reativo, precisei importar
   ],
-  declarations: [SignupPage]
+  declarations: [SignupPage],
+  providers: [
+    CidadeService,
+    EstadoService
+  ]
 })
 export class SignupPageModule {}
