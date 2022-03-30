@@ -19,7 +19,7 @@ export class SignupPage implements OnInit {
   constructor(
     public formBuilder: FormBuilder,
     public cidadeService: CidadeService,
-    public estadoService: EstadoService
+    public estadoService: EstadoService,
     ) {
     /*Essas são as validações que eu defini lá no back end. O primeiro campo fica vazio pq é o usuario
     que vai preencher e o segundo é a validação em si*/
@@ -56,6 +56,7 @@ export class SignupPage implements OnInit {
      },
      error => {}
      );
+
    }
 
   updateCidades() {

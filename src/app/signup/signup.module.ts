@@ -16,12 +16,14 @@ import { EstadoService } from 'src/services/domain/EstadoService';
     FormsModule,
     IonicModule,
     SignupPageRoutingModule,
-    ReactiveFormsModule //Esse não estava na aula, mas como peguei um template de formulário reativo, precisei importar
+    ReactiveFormsModule, //Esse não estava na aula, mas como peguei um template de formulário reativo, precisei importar
+
   ],
   declarations: [SignupPage],
   providers: [
     CidadeService,
-    EstadoService
+    EstadoService,
+
   ]
 })
 export class SignupPageModule {}
