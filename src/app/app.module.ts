@@ -14,6 +14,7 @@ import { FolderPage } from './folder/folder.page';
 import { ClienteService } from 'src/services/domain/ClienteService';
 import { authMiddlewareProvider } from 'src/middlewares/authMiddleware';
 import { ProdutoService } from 'src/services/domain/ProdutoService';
+import { CartService } from 'src/services/domain/CartService';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ProdutoService } from 'src/services/domain/ProdutoService';
   AuthService,
   StorageService,
   ClienteService,
-  ProdutoService
+  ProdutoService,
+  CartService
     ],
   bootstrap: [AppComponent],
 })

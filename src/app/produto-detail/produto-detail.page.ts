@@ -2,10 +2,11 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { identity } from 'rxjs';
 import { API_CONFIG } from 'src/config/APIConfig';
 import { ProdutoDTO } from 'src/models/ProdutoDTO';
+import { CartService } from 'src/services/domain/CartService';
 import { ProdutoService } from 'src/services/domain/ProdutoService';
 
 @Component({
@@ -20,7 +21,9 @@ export class ProdutoDetailPage implements OnInit {
   constructor(
     public activetedRoute: ActivatedRoute,
     public produtoService: ProdutoService,
-    public location: Location) { }
+    public location: Location,
+    public router: Router,
+    public cartService: CartService) { }
 
   ngOnInit() {
      const produto_id = this.activetedRoute.snapshot.queryParamMap.get('produtos');
@@ -40,8 +43,16 @@ export class ProdutoDetailPage implements OnInit {
     },
     error => {});
   }
+  //Não achei um método no Router pra voltar pra pagina anterior mantendo os mesmos dados de URL, por isso usei Location
   back() {
     this.location.back();
+  }
+
+  addToCart(produto: ProdutoDTO) {
+    this.cartService.addProduto(produto);
+    this.router.navigateByUrl('cart');
+    console.log(produto);
+
   }
 
 }
