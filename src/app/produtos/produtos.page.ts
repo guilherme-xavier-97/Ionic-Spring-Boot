@@ -43,4 +43,8 @@ export class ProdutosPage implements OnInit {
         error => {});
     }
   }
+
+  showDetails() {
+    this.router.navigateByUrl('produto-detail');
+  }
 }
