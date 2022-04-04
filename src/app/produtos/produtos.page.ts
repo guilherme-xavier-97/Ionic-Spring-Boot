@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { of } from 'rxjs';
+import { API_CONFIG } from 'src/config/APIConfig';
 import { ProdutoDTO } from 'src/models/ProdutoDTO';
 import { ProdutoService } from 'src/services/domain/ProdutoService';
 
@@ -23,10 +25,22 @@ export class ProdutosPage implements OnInit {
     this.produtoService.findByCategoria(categoria_id).subscribe(response => {
       // eslint-disable-next-line @typescript-eslint/dot-notation
       this.items = response['content'];
+      this.loadImageUrls();
     },
 
     error => {});
 
   }
 
+  loadImageUrls() {
+    // eslint-disable-next-line @typescript-eslint/prefer-for-of
+    for (let i=0; i<this.items.length; i++) {
+      const item = this.items[i];
+      this.produtoService.getSmallImageFromBucket(item.id)
+        .subscribe(response => {
+          item.imageUrl = `${API_CONFIG.bucketBaseUrl}/prod${item.id}-small.jpg`;
+        },
+        error => {});
+    }
+  }
 }
