@@ -9,7 +9,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item button *ngFor="let item of items" (click)="showDetails()">
+    <ion-item button *ngFor="let item of items" (click)="showDetails(item.id)">
       <ion-thumbnail item-start>
         <img [src]="item.imageUrl || 'assets/icon/no-picture.jpg'"/>
       </ion-thumbnail>

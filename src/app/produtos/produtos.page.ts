@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
@@ -44,7 +45,7 @@ export class ProdutosPage implements OnInit {
     }
   }
 
-  showDetails() {
-    this.router.navigateByUrl('produto-detail');
+  showDetails(produto_id: string) {
+    this.router.navigate(['produto-detail'], {queryParams: {produtos: produto_id}});
   }
 }
