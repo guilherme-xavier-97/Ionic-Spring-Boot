@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicModule, IonicRouteStrategy, } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CategoriaService } from 'src/services/domain/CategoriaService';
-import { interceptorErrorProvider } from 'src/error/interceptor.error';
+import { InterceptorErrorProvider } from 'src/error/InterceptorError';
 import { AuthService } from 'src/services/AuthService';
 import { StorageService } from 'src/services/StorageService';
 import { FolderPage } from './folder/folder.page';
@@ -25,7 +25,7 @@ import { authMiddlewareProvider } from 'src/middlewares/authMiddleware';
   },
   CategoriaService,
   authMiddlewareProvider,
-  interceptorErrorProvider,
+  InterceptorErrorProvider,
   AuthService,
   StorageService,
   ClienteService

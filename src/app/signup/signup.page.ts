@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AlertController, NavController } from '@ionic/angular';
 import { CidadeDTO } from 'src/models/CidadeDTO';
 import { EstadoDTO } from 'src/models/EstadoDTO';
 import { CidadeService } from 'src/services/domain/CidadeService';
+import { ClienteService } from 'src/services/domain/ClienteService';
 import { EstadoService } from 'src/services/domain/EstadoService';
 
 @Component({
@@ -20,21 +23,25 @@ export class SignupPage implements OnInit {
     public formBuilder: FormBuilder,
     public cidadeService: CidadeService,
     public estadoService: EstadoService,
+    public clienteService: ClienteService,
+    public router: Router,
+    public nav: NavController,
+    public alertController: AlertController
     ) {
     /*Essas são as validações que eu defini lá no back end. O primeiro campo fica vazio pq é o usuario
     que vai preencher e o segundo é a validação em si*/
     this.formGroup = this.formBuilder.group({
-      nome: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(120)]],
-      email: ['', [Validators.required, Validators.email]],
-      tipo : ['', [Validators.required]],
-      cpfOuCnpj : ['', [Validators.required, Validators.minLength(11), Validators.maxLength(14)]],
-      senha : ['', [Validators.required]],
-      logradouro : ['', [Validators.required]],
-      numero : ['', [Validators.required]],
-      complemento : ['', []],
-      bairro : ['', []],
-      cep : ['', [Validators.required]],
-      telefone1 : ['', [Validators.required]],
+      nome: ['teste', [Validators.required, Validators.minLength(5), Validators.maxLength(120)]],
+      email: ['t@teste.com', [Validators.required, Validators.email]],
+      tipo : ['1', [Validators.required]],
+      cpfOucnpj : ['35593241813', [Validators.required, Validators.minLength(11), Validators.maxLength(14)]],
+      senha : ['123', [Validators.required]],
+      logradouro : ['rua a', [Validators.required]],
+      numero : ['11', [Validators.required]],
+      complemento : ['apto 12', []],
+      bairro : ['Vila B', []],
+      cep : ['7639827', [Validators.required]],
+      telefone1 : ['452345', [Validators.required]],
       telefone2 : ['', []],
       telefone3 : ['', []],
       estadoId : [null, [Validators.required]],
@@ -76,7 +83,31 @@ export class SignupPage implements OnInit {
   }
 
   signupUser() {
-    console.log('enviou');
+    this.clienteService.insert(this.formGroup.value).subscribe(
+      response => {
+      this.showInsertOk();
+    },
+    error => {},
+    );
+
+  }
+
+ async showInsertOk() {
+    const alert = await this.alertController.create({
+      header: 'Sucesso!',
+      message: 'Cadastro realizado com sucesso.',
+      backdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            this.router.navigateByUrl('');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
 }
