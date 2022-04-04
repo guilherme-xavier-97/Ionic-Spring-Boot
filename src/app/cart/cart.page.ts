@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { API_CONFIG } from 'src/config/APIConfig';
 import { CartItem } from 'src/models/CartItem';
+import { ProdutoDTO } from 'src/models/ProdutoDTO';
 import { CartService } from 'src/services/domain/CartService';
 import { ProdutoService } from 'src/services/domain/ProdutoService';
 
@@ -39,6 +40,22 @@ export class CartPage implements OnInit {
 
   back() {
     this.location.back();
+  }
+
+  removeProduto(produto: ProdutoDTO) {
+    this.items = this.cartService.removeProduto(produto).items;
+  }
+
+  increaseProduto(produto: ProdutoDTO) {
+    this.items = this.cartService.increaseProduto(produto).items;
+  }
+
+  decreaseProduto(produto: ProdutoDTO) {
+    this.items = this.cartService.decreaseProduto(produto).items;
+  }
+
+  total(): number {
+    return this.cartService.total();
   }
 
 }
