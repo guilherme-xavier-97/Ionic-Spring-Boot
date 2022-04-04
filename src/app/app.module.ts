@@ -13,6 +13,7 @@ import { StorageService } from 'src/services/StorageService';
 import { FolderPage } from './folder/folder.page';
 import { ClienteService } from 'src/services/domain/ClienteService';
 import { authMiddlewareProvider } from 'src/middlewares/authMiddleware';
+import { ProdutoService } from 'src/services/domain/ProdutoService';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { authMiddlewareProvider } from 'src/middlewares/authMiddleware';
   InterceptorErrorProvider,
   AuthService,
   StorageService,
-  ClienteService
+  ClienteService,
+  ProdutoService
     ],
   bootstrap: [AppComponent],
 })

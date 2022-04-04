@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" fill="clear" color="dark" [routerLink]="['/categorias']">
+      <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    <ion-title>Produtos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item button *ngFor="let item of items">
+      <ion-thumbnail item-start>
+        <img [src]="item.imageUrl" />
+      </ion-thumbnail>
+      <h2>{{item.nome}}</h2>
+      <p>{{item.preco | currency}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>
