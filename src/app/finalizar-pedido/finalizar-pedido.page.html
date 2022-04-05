@@ -10,17 +10,23 @@
 <ion-content>
   <ion-list>
     <ion-list-header>Selecione o endereço</ion-list-header>
-    <ion-item *ngFor="let item of items">
-
-
-        {{item.logradouro}}, {{item.numero}}<br>
-        {{item.complemento}}, {{item.bairro}}<br>
-        CEP {{item.cep}}<br>
-        {{item.cidade.nome}}, {{item.cidade.estado.nome}}<br><br>
-
-
-      <ion-radio slot="start" value="item.id"></ion-radio>
-
-    </ion-item>
+    <ion-radio-group>
+      <ion-item *ngFor="let item of items">
+        <ion-label
+          ><h2>{{item.logradouro}}, {{item.numero}}</h2>
+          <p>{{item.complemento}} {{item.bairro}} CEP {{item.cep}}</p>
+          <p>
+            {{item.cidade.nome}}, {{item.cidade.estado.nome}} {{item.id}}
+          </p></ion-label
+        >
+        <ion-radio slot="start" value="{{item.id}}"></ion-radio>
+        <ion-button
+          color="primary"
+          expand="block"
+          (click)="finalizarPedido(item)"
+          >Ir para pagamento</ion-button
+        >
+      </ion-item>
+    </ion-radio-group>
   </ion-list>
 </ion-content>
