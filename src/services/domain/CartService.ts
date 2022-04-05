@@ -80,7 +80,6 @@ export class CartService {
     }
 
     this.storage.setCart(cart);
-    console.log(cart);
     return cart;
   }
 

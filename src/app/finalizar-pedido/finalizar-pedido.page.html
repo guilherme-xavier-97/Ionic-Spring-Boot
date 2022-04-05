@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" fill="clear" color="dark" (click)="back()">
+      <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    <ion-title>Fechamento de pedido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>Selecione o endereço</ion-list-header>
+    <ion-item *ngFor="let item of items">
+
+
+        {{item.logradouro}}, {{item.numero}}<br>
+        {{item.complemento}}, {{item.bairro}}<br>
+        CEP {{item.cep}}<br>
+        {{item.cidade.nome}}, {{item.cidade.estado.nome}}<br><br>
+
+
+      <ion-radio slot="start" value="item.id"></ion-radio>
+
+    </ion-item>
+  </ion-list>
+</ion-content>
