@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" fill="clear" color="warning" (click)="back()">
+      <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    <ion-title>Pagamento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form
+    [formGroup]="formGroup"
+    (ngSubmit)="confirmacaoDePedido(); $event.preventDefault()"
+  >
+    <!-- Radio buttons -->
+    <ion-radio-group lines="full" formControlName="@type">
+      <ion-list-header>
+        <ion-label>Opção de pagemento</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label>Pagamento com cartão</ion-label>
+        <ion-radio slot="start" value="pagamentoComCartao" checked></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Pagamento com Boleto</ion-label>
+        <ion-radio slot="start" value="pagamentoComBoleto"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+    <!-- Selects -->
+    <ion-item *ngIf="formGroup.value['@type'] === 'pagamentoComCartao'">
+      <ion-label>Parcelas do Cartão</ion-label>
+      <ion-select formControlName="numeroDeParcelas">
+        <ion-select-option *ngFor="let n of parcelas" [value]="n"
+          >{{n}}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+          <ion-button type="submit" color="primary" expand="block" [disabled]="formGroup.invalid"
+            >Próximo</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

@@ -2,6 +2,8 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
+//import { NavController } from '@ionic/angular';
 import { EnderecoDTO } from 'src/models/EnderecoDTO';
 import { PedidoDTO } from 'src/models/PedidoDTO';
 import { CartService } from 'src/services/domain/CartService';
@@ -24,7 +26,9 @@ export class FinalizarPedidoPage implements OnInit {
     public storage: StorageService,
     public clienteService: ClienteService,
     public router: Router,
-    public cartService: CartService) { }
+    public cartService: CartService,
+    public navCtrl: NavController
+    ) { }
 
   ngOnInit() {
     const localUser = this.storage.getLocalUser();
@@ -60,8 +64,10 @@ export class FinalizarPedidoPage implements OnInit {
     this.location.back();
   }
 
-  finalizarPedido(item: EnderecoDTO) {
+  finalizarPedido(item: EnderecoDTO,) {
     this.pedido.enderecoDaEntrega = {id: item.id};
     console.log(this.pedido);
+    //this.router.navigate(['pagamento'], {queryParams: {pedido: this.pedido}});
+    this.navCtrl.navigateForward(['pagamento'], {queryParams: {pedido: this.pedido}});
   }
   }

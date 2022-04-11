@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 
 import { FinalizarPedidoPageRoutingModule } from './finalizar-pedido-routing.module';
 
@@ -13,8 +13,11 @@ import { FinalizarPedidoPage } from './finalizar-pedido.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    FinalizarPedidoPageRoutingModule
+    FinalizarPedidoPageRoutingModule,
+
   ],
-  declarations: [FinalizarPedidoPage]
+  declarations: [FinalizarPedidoPage,
+    NavController,
+  ],
 })
 export class FinalizarPedidoPageModule {}

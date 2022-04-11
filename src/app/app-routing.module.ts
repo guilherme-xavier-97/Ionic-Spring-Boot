@@ -38,6 +38,10 @@ const routes: Routes = [
   {
     path: 'finalizar-pedido',
     loadChildren: () => import('./finalizar-pedido/finalizar-pedido.module').then( m => m.FinalizarPedidoPageModule)
+  },
+  {
+    path: 'pagamento',
+    loadChildren: () => import('./pagamento/pagamento.module').then( m => m.PagamentoPageModule)
   }
 ];
 
